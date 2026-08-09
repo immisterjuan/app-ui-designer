@@ -2,10 +2,9 @@ import React from 'react'
 import Editor from './editor/Editor'
 import KitPanel from './kits/KitPanel'
 import OAuthPanel from './github/OAuthPanel'
-<<<<<<< HEAD
 import TokenManager from './github/TokenManager'
-=======
->>>>>>> feature/github-oauth
+import ExportPanel from './export/ExportPanel'
+import AIPanel from './ai/AIPanel'
 
 export default function App() {
   return (
@@ -15,16 +14,15 @@ export default function App() {
       </header>
 
       <main style={{display:'flex', height:'calc(100vh - 68px)'}}>
-<<<<<<< HEAD
-        <aside style={{width:320, borderRight:'1px solid #eee', padding:12, overflow:'auto'}}>
+        <aside style={{width:340, borderRight:'1px solid #eee', padding:12, overflow:'auto'}}>
           <OAuthPanel />
           <TokenManager />
-=======
-        <aside style={{width:300, borderRight:'1px solid #eee', padding:12, overflow:'auto'}}>
-          <OAuthPanel />
->>>>>>> feature/github-oauth
+          <hr />
+          <AIPanel />
           <hr />
           <KitPanel />
+          <hr />
+          <ExportPanel />
           <hr />
           <h3 style={{marginTop:12}}>Palette</h3>
           <p>Generic primitives: Container, Text, Image, Button, Input</p>
