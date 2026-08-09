@@ -1,5 +1,3 @@
-import JSZip from 'jszip'
-
 export async function generateProjectFiles(wireframe: any, kit: any): Promise<Record<string,string>>{
   const name = (wireframe?.meta?.name) || 'app-ui-designer-generated'
   const files: Record<string,string> = {}
@@ -40,6 +38,9 @@ export async function generateProjectFiles(wireframe: any, kit: any): Promise<Re
 }
 
 export async function generateZip(files: Record<string,string>){
+  // Dynamically import JSZip to avoid Rollup resolution issues for CJS packages
+  const JSZipModule = await import('jszip')
+  const JSZip = (JSZipModule && (JSZipModule.default ?? JSZipModule)) as any
   const zip = new JSZip()
   for(const path of Object.keys(files)){
     zip.file(path, files[path])
