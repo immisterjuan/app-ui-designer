@@ -19,11 +19,19 @@ Usage notes
 
 2. Run the app locally (npm install; npm run dev). In the left sidebar, paste the client_id into the OAuth panel and click Connect.
 
+<<<<<<< HEAD
 3. After authorizing, GitHub will redirect back to /oauth/callback. The app attempts to exchange the code for an access token using PKCE. On success the token is stored in your browser's IndexedDB and used for Git operations.
 
 Notes & fallback
 - If the direct client-side token exchange is blocked or requires a client_secret (depending on how GitHub's app is configured), follow the README instructions to deploy a small serverless token-exchange endpoint and configure the app to use it.
 - Access tokens are stored in the user's browser (IndexedDB). The app will NOT send tokens to any external server.
+=======
+3. After authorizing, GitHub will redirect back to /oauth/callback. The app attempts to exchange the code for an access token using PKCE. On success the token is stored locally in IndexedDB and used for Git operations.
+
+Notes & fallback
+- If the direct client-side token exchange is blocked or requires a client_secret (depending on how GitHub's app is configured), follow the README instructions to deploy a small serverless token-exchange endpoint and configure the app to use it.
+- Access tokens are stored locally in the browser (IndexedDB). The app will NOT send tokens to any external server.
+>>>>>>> feature/github-oauth
 
 Security
 - Users should register their own OAuth App or you can register one and provide the client_id. Tokens are stored in the user's browser and can be revoked by clearing the stored token or from GitHub settings.
