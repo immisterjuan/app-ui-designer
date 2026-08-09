@@ -1,5 +1,6 @@
 import React from 'react'
 import Editor from './editor/Editor'
+import KitPanel from './kits/KitPanel'
 
 export default function App() {
   return (
@@ -9,8 +10,10 @@ export default function App() {
       </header>
 
       <main style={{display:'flex', height:'calc(100vh - 68px)'}}>
-        <aside style={{width:260, borderRight:'1px solid #eee', padding:12}}>
-          <h3>Palette</h3>
+        <aside style={{width:300, borderRight:'1px solid #eee', padding:12, overflow:'auto'}}>
+          <KitPanel />
+          <hr />
+          <h3 style={{marginTop:12}}>Palette</h3>
           <p>Generic primitives: Container, Text, Image, Button, Input</p>
         </aside>
 
