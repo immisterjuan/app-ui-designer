@@ -1,0 +1,26 @@
+{
+  "name": "app-ui-designer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Just another Web and Mobile Application UI Designer using known styling framework like Tailwind, Bootstrap and many more",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reactflow": "^11.8.0",
+    "zustand": "^4.4.0",
+    "idb": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "typescript": "^5.1.6",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "vite-plugin-pwa": "^0.18.3"
+  }
+}
