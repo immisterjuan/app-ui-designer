@@ -1,6 +1,7 @@
 import React from 'react'
 import Editor from './editor/Editor'
 import KitPanel from './kits/KitPanel'
+import OAuthPanel from './github/OAuthPanel'
 
 export default function App() {
   return (
@@ -11,6 +12,8 @@ export default function App() {
 
       <main style={{display:'flex', height:'calc(100vh - 68px)'}}>
         <aside style={{width:300, borderRight:'1px solid #eee', padding:12, overflow:'auto'}}>
+          <OAuthPanel />
+          <hr />
           <KitPanel />
           <hr />
           <h3 style={{marginTop:12}}>Palette</h3>
