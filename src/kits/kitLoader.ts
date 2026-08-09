@@ -61,7 +61,8 @@ export async function loadKitFromCache(id: string): Promise<KitManifest | undefi
   const kit = await loadKit(id)
   if (!kit) return undefined
   if (kit._cssBlobs) {
-    for (const cssText of Object.values(kit._cssBlobs)) injectCssText(cssText, kit.id)
+    const cssBlobValues = Object.values(kit._cssBlobs) as string[]
+    for (const cssText of cssBlobValues) injectCssText(cssText, kit.id)
   }
   return kit as KitManifest
 }
@@ -97,7 +98,8 @@ export async function getKitSize(id: string): Promise<number | undefined> {
   if(!kit) return undefined
   let total = 0
   if(kit._cssBlobs){
-    for(const v of Object.values(kit._cssBlobs)) total += (v?.length ?? 0)
+    const cssBlobValues = Object.values(kit._cssBlobs) as string[]
+    for(const v of cssBlobValues) total += (v?.length ?? 0)
   }
   return total
 }
