@@ -1,3 +1,4 @@
+// persistence/idb.ts - updated with token helpers
 import { openDB } from 'idb'
 
 const DB_NAME = 'app-ui-designer-db'
@@ -37,4 +38,28 @@ export async function saveKit(manifest: any, key: string){
 export async function loadKit(key: string){
   const db = await getDb()
   return db.get('kits', key)
+}
+
+export async function saveSetting(key: string, value: any){
+  const db = await getDb()
+  await db.put('settings', value, key)
+}
+
+export async function loadSetting(key: string){
+  const db = await getDb()
+  return db.get('settings', key)
+}
+
+// Token helpers
+export async function saveToken(token: string){
+  return saveSetting('github:access_token', token)
+}
+
+export async function loadToken(){
+  return loadSetting('github:access_token')
+}
+
+export async function deleteToken(){
+  const db = await getDb()
+  return db.delete('settings', 'github:access_token')
 }

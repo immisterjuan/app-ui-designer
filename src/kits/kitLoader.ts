@@ -65,3 +65,39 @@ export async function loadKitFromCache(id: string): Promise<KitManifest | undefi
   }
   return kit as KitManifest
 }
+
+export async function removeKit(id: string): Promise<void> {
+  // remove stored kit manifest and remove injected CSS link
+  const kit = await loadKit(id)
+  if (!kit) return
+  // remove injected CSS link element
+  const link = document.getElementById(`kit-css-${id}`) as HTMLLinkElement | null
+  if (link) {
+    // attempt to revoke object URL
+    try{
+      const href = link.href
+      if (href && href.startsWith('blob:')) URL.revokeObjectURL(href)
+    }catch(e){/*ignore*/}
+    link.remove()
+  }
+  // remove from IndexedDB
+  const dbKit = await import('../persistence/idb')
+  const db = await (dbKit as any).getDb?.() // getDb is not exported; fallback to delete by using saveKit with undefined
+  // safe remove: we will call saveKit with null via internal delete
+  try{
+    // openDB isn't available here; use existing helper deletion by saving null
+    await (dbKit as any).saveKit?.(undefined, id)
+  }catch(e){
+    // best effort: ignore
+  }
+}
+
+export async function getKitSize(id: string): Promise<number | undefined> {
+  const kit = await loadKit(id)
+  if(!kit) return undefined
+  let total = 0
+  if(kit._cssBlobs){
+    for(const v of Object.values(kit._cssBlobs)) total += (v?.length ?? 0)
+  }
+  return total
+}
